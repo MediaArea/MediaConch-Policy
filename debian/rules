@@ -58,39 +58,39 @@ install: build
 	cd Project/GNU/CLI && $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	cd Project/GNU/Server && $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	install -dm 755 $(CURDIR)/debian/tmp/usr/bin
-	install -m 755 Project/Qt/mediaconch-gui $(CURDIR)/debian/tmp/usr/bin
+	install -m 755 Project/Qt/mediaconch-policy-gui $(CURDIR)/debian/tmp/usr/bin
 	#cd Project/Qt && $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
-	install -dm 755 $(CURDIR)/debian/tmp/usr/share/doc/mediaconch
-	install -m 644 Release/ReadMe_CLI_Linux.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch/ReadMe.txt
-	install -m 644 History_CLI.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch/History.txt
-	install -m 644 License.html $(CURDIR)/debian/tmp/usr/share/doc/mediaconch
+	install -dm 755 $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy
+	install -m 644 Release/ReadMe_CLI_Linux.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy/ReadMe.txt
+	install -m 644 History_CLI.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy/History.txt
+	install -m 644 License.html $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy
 
 	#install -dm 755 $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-server
 
-	install -dm 755 $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-gui
-	install -m 644 Release/ReadMe_CLI_Linux.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-gui/ReadMe.txt
-	install -m 644 History_GUI.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-gui/History.txt
-	install -m 644 License.html $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-gui
+	install -dm 755 $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy-gui
+	install -m 644 Release/ReadMe_CLI_Linux.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy-gui/ReadMe.txt
+	install -m 644 History_GUI.txt $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy-gui/History.txt
+	install -m 644 License.html $(CURDIR)/debian/tmp/usr/share/doc/mediaconch-policy-gui
 
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/pixmaps
-	install -m 644 Source/Resource/Image/MediaConch.xpm $(CURDIR)/debian/tmp/usr/share/pixmaps/mediaconch.xpm
+	install -m 644 Source/Resource/Image/MediaConch.xpm $(CURDIR)/debian/tmp/usr/share/pixmaps/mediaconch-policy.xpm
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/icons/hicolor
-	install -m 644 Source/Resource/Image/MediaConchBig.png $(CURDIR)/debian/tmp/usr/share/icons/hicolor/mediaconch.png
+	install -m 644 Source/Resource/Image/MediaConchBig.png $(CURDIR)/debian/tmp/usr/share/icons/hicolor/mediaconch-policy.png
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/icons/hicolor/256x256/apps
-	install -m 644 Source/Resource/Image/MediaConch.png $(CURDIR)/debian/tmp/usr/share/icons/hicolor/256x256/apps/mediaconch.png
+	install -m 644 Source/Resource/Image/MediaConch.png $(CURDIR)/debian/tmp/usr/share/icons/hicolor/256x256/apps/mediaconch-policy.png
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/icons/hicolor/scalable/apps
-	install -m 644 Source/Resource/Image/MediaConch.svg $(CURDIR)/debian/tmp/usr/share/icons/hicolor/scalable/apps/mediaconch.svg
+	install -m 644 Source/Resource/Image/MediaConch.svg $(CURDIR)/debian/tmp/usr/share/icons/hicolor/scalable/apps/mediaconch-policy.svg
 
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/applications
-	install -m 644 Project/GNU/GUI/mediaconch-gui.desktop $(CURDIR)/debian/tmp/usr/share/applications
+	install -m 644 Project/GNU/GUI/mediaconch-gui.desktop $(CURDIR)/debian/tmp/usr/share/applications/mediaconch-policy-gui.desktop
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/apps/konqueror/servicemenus/
-	install -m 644 Project/GNU/GUI/mediaconch-gui.kde3.desktop $(CURDIR)/debian/tmp/usr/share/apps/konqueror/servicemenus/mediaconch-gui.desktop
+	install -m 644 Project/GNU/GUI/mediaconch-gui.kde3.desktop $(CURDIR)/debian/tmp/usr/share/apps/konqueror/servicemenus/mediaconch-policy-gui.desktop
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/kde4/services/ServiceMenus/
-	install -m 644 Project/GNU/GUI/mediaconch-gui.kde4.desktop $(CURDIR)/debian/tmp/usr/share/kde4/services/ServiceMenus/mediaconch-gui.desktop
+	install -m 644 Project/GNU/GUI/mediaconch-gui.kde4.desktop $(CURDIR)/debian/tmp/usr/share/kde4/services/ServiceMenus/mediaconch-policy-gui.desktop
 
 	install -dm 755 $(CURDIR)/debian/tmp/usr/share/appdata
-	install -m 644 Project/GNU/GUI/mediaconch-gui.appdata.xml $(CURDIR)/debian/tmp/usr/share/appdata
+	install -m 644 Project/GNU/GUI/mediaconch-gui.appdata.xml $(CURDIR)/debian/tmp/usr/share/appdata/mediaconch-policy-gui.appdata.xml
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -116,9 +116,7 @@ binary-arch: build install
 #	dh_installinfo
 	dh_installman
 	dh_link
-	dh_strip -p mediaconch --dbg-package=mediaconch-dbg
-	dh_strip -p mediaconch-server --dbg-package=mediaconch-server-dbg
-	dh_strip -p mediaconch-gui --dbg-package=mediaconch-gui-dbg
+	dh_strip
 	dh_compress
 	dh_fixperms
 #	dh_perl

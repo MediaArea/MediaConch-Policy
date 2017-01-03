@@ -1,0 +1,12 @@
+[Unit]
+Description=MediaConch Policy Server
+
+[Service]
+Type=forking
+Environment="CONFIG=/etc/mediaconch-policy/MediaConch.rc"
+ExecStart=/usr/bin/mediaconch-policyd --configuration=${CONFIG}
+
+[Install]
+WantedBy=multi-user.target
+
+# Contributor: Vascom, vascom2@gmail.com"
